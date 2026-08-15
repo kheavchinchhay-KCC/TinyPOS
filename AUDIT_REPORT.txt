@@ -1,0 +1,54 @@
+Tiny POS Step 45 FINAL SAFE VERIFIED — Audit Report
+==============================================================
+
+Base audited: uploaded Step 44 Demand Forecasting patch
+Final patch: Step 45 Integration & API Center with merged safe netlify.toml
+
+RESULT
+------
+Step 44 translation keys missing from Step 45: 0
+New Step 45 translation keys added: 19
+Confirmed netlify.toml preserves the older public-config, Cloudinary, staff,
+backup, Telegram, System Health and CRM routes, then adds Step 45 routes.
+
+CHANGED-FILE COMPARISON
+-----------------------
+src/App.jsx: 8,032 -> 8,240 bytes; +2 / -0 lines
+src/components/AppShell.jsx: 10,650 -> 10,785 bytes; +8 / -1 lines
+src/lib/permissions.js: 13,236 -> 13,356 bytes; +4 / -0 lines
+src/i18n/translations.js: 72,627 -> 74,365 bytes; +21 / -0 lines
+src/pages/TelegramPage.jsx: 21,946 -> 22,035 bytes; +1 / -0 lines
+src/styles/global.css: 258,662 -> 261,941 bytes; +6 / -0 lines
+netlify/functions/_telegram-i18n.mjs: 19,029 -> 19,734 bytes; +7 / -1 lines
+netlify/functions/backup-admin.mjs: 27,811 -> 28,460 bytes; +17 / -0 lines
+netlify/functions/telegram-notifications.mjs: 36,752 -> 38,781 bytes; +54 / -1 lines
+public/service-worker.js: 2,562 -> 2,562 bytes; +1 / -1 lines
+
+NEW STEP 45 TRANSLATION KEYS
+----------------------------
+- API Clients
+- API Guide
+- API clients
+- Create restricted API clients, signed webhooks and review delivery activity.
+- Dead deliveries
+- Dead webhooks and API server failures
+- Download OpenAPI JSON
+- Integration & API Center
+- Integration Activity
+- Integration alerts
+- Keys are hashed and the original value is displayed only once.
+- Never used
+- New API Client
+- New Webhook
+- No API clients yet.
+- No webhooks yet.
+- Recent API failures
+- Signed Webhooks
+- Webhooks
+
+INSTALLATION SAFETY
+-------------------
+Do not delete existing repository folders.
+The live repository should keep the larger/newer Step 45 replacement files.
+The 67 KB translations.js is not the verified final Step 45 file.
+The verified translations.js is 74,365 bytes (approximately 73 KB in Windows).

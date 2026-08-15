@@ -1,0 +1,146 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[functions]
+  node_bundler = "esbuild"
+
+# Step 31 / Telegram notifications
+[functions."telegram-notifications"]
+  schedule = "*/15 * * * *"
+
+# Step 43 / Customer CRM campaigns
+[functions."customer-campaign-dispatch"]
+  schedule = "*/15 * * * *"
+
+# System health checks
+[functions."system-health"]
+  schedule = "0 */6 * * *"
+
+# Step 46.25 / configurable automatic backups.
+# The function wakes hourly and only processes organizations whose stored next_backup_at is due.
+[functions."backup-scheduler"]
+  schedule = "0 * * * *"
+
+# Step 44 / Demand forecasting
+[functions."demand-forecast-schedule"]
+  schedule = "0 * * * *"
+
+# Step 45 / Integration webhook delivery
+[functions."integration-webhook-dispatch"]
+  schedule = "*/5 * * * *"
+
+# ---------------------------------------------------------------------------
+# Existing API routes — preserved from the user's Step 43 netlify.toml
+# ---------------------------------------------------------------------------
+
+[[redirects]]
+  from = "/api/public-config"
+  to = "/.netlify/functions/public-config"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/cloudinary-signature"
+  to = "/.netlify/functions/cloudinary-signature"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/cloudinary-delete"
+  to = "/.netlify/functions/cloudinary-delete"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/staff-admin"
+  to = "/.netlify/functions/staff-admin"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/shop-logo"
+  to = "/.netlify/functions/shop-logo"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/backup-admin"
+  to = "/.netlify/functions/backup-admin"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/telegram-admin"
+  to = "/.netlify/functions/telegram-admin"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/telegram-webhook"
+  to = "/.netlify/functions/telegram-webhook"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/telegram-session"
+  to = "/.netlify/functions/telegram-session"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/telegram-event"
+  to = "/.netlify/functions/telegram-event"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/staff-file-signature"
+  to = "/.netlify/functions/staff-file-signature"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/system-health"
+  to = "/.netlify/functions/system-health"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/customer-campaigns"
+  to = "/.netlify/functions/customer-campaign-admin"
+  status = 200
+  force = true
+
+# ---------------------------------------------------------------------------
+# Step 45 — Integration & API Center
+# ---------------------------------------------------------------------------
+
+[[redirects]]
+  from = "/api/v1/*"
+  to = "/.netlify/functions/integration-api/:splat"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/integration-admin"
+  to = "/.netlify/functions/integration-admin"
+  status = 200
+  force = true
+
+
+[[redirects]]
+  from = "/api/online-store-media"
+  to = "/.netlify/functions/online-store-media"
+  status = 200
+  force = true
+
+# React/Vite fallback — this must always stay last
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

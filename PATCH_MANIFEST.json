@@ -1,0 +1,33 @@
+{
+  "step": 45,
+  "name": "Integration & API Center",
+  "release": "Tiny POS v1.1 Beta 8",
+  "schema_step": 45,
+  "base": "User-supplied Step 44 patch",
+  "new_files": [
+    "database/40_integration_api_center.sql",
+    "netlify/functions/_integration-shared.mjs",
+    "netlify/functions/integration-admin.mjs",
+    "netlify/functions/integration-api.mjs",
+    "netlify/functions/integration-webhook-dispatch.mjs",
+    "src/lib/integrations.js",
+    "src/pages/IntegrationCenterPage.jsx",
+    "src/components/ApiClientModal.jsx",
+    "src/components/WebhookEndpointModal.jsx",
+    "src/components/SecretRevealModal.jsx"
+  ],
+  "changed_files": [
+    "netlify/functions/_telegram-i18n.mjs",
+    "netlify/functions/backup-admin.mjs",
+    "netlify/functions/telegram-notifications.mjs",
+    "public/service-worker.js",
+    "src/App.jsx",
+    "src/components/AppShell.jsx",
+    "src/i18n/translations.js",
+    "src/lib/permissions.js",
+    "src/lib/release.js",
+    "src/pages/TelegramPage.jsx",
+    "src/styles/global.css",
+    "netlify.toml"
+  ]
+}

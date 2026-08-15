@@ -1,0 +1,57 @@
+Tiny POS 46.25 - Google Drive Backup Setup
+
+WHY CONNECTION IS REQUIRED
+A Google Drive folder URL by itself cannot authorize file uploads. Tiny POS must receive Google OAuth permission, then it stores the refresh token encrypted on the server so automatic backups can run while the browser is closed.
+
+A. GOOGLE CLOUD
+1. Open Google Cloud Console.
+2. Create/select a project for Tiny POS.
+3. Enable Google Drive API.
+4. Configure the OAuth consent screen.
+5. Create an OAuth Client ID of type "Web application".
+6. Add this Authorized redirect URI, using the exact domain where Tiny POS is deployed:
+
+   https://YOUR-TINY-POS-DOMAIN/api/backup-google-drive-callback
+
+   Example for a Netlify domain:
+   https://kcc-tinypos.netlify.app/api/backup-google-drive-callback
+
+7. Copy the OAuth Client ID and Client Secret.
+
+B. NETLIFY ENVIRONMENT VARIABLES
+Add these three environment variables to the same Netlify site:
+
+GOOGLE_BACKUP_CLIENT_ID
+  = Google OAuth Web Client ID
+
+GOOGLE_BACKUP_CLIENT_SECRET
+  = Google OAuth Web Client Secret
+
+BACKUP_TOKEN_ENCRYPTION_KEY
+  = a long random secret used only to encrypt the stored Google refresh token.
+    Use at least 24 characters; 32+ random bytes is recommended.
+
+Example terminal command to make a key:
+  openssl rand -base64 32
+
+Do not expose any of these values in VITE_* variables or browser code.
+
+C. DEPLOY + CONNECT
+1. Redeploy the Netlify site after setting the environment variables.
+2. Sign in to Tiny POS as owner/admin.
+3. Open Audit & Backup > Backup center.
+4. Click "Connect Google Drive".
+5. Approve the Google Drive permission.
+6. Optional: paste a Google Drive folder URL into "Google Drive backup folder link".
+   If blank, Tiny POS creates a folder named "Tiny POS Backups" on first Drive backup.
+7. Save backup settings.
+8. Click "Backup now to Drive" and confirm the ZIP appears in Google Drive.
+
+D. AUTOMATIC SCHEDULE
+- Turn Auto backup ON.
+- Choose Every day / Every 3 days / Every week / Custom days.
+- For Custom, enter 2-90 days, e.g. 10 days.
+- Choose the backup time.
+- Save backup settings.
+
+The Netlify backup-scheduler wakes hourly and processes only organizations whose stored next backup time is due.

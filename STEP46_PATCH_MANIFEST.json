@@ -1,0 +1,437 @@
+{
+  "package": "Tiny POS Step 46 Stability & UI Recovery",
+  "generated_utc": "2026-07-31T12:44:43+00:00",
+  "source_zip": "kcc001-main.zip",
+  "source_zip_sha256": "e0ad8f10aa23a1d4e2c74e79cd345dd31495bc118e7364daa3907bd95d62c623",
+  "baseline_commit": "72bbbe881d926e2808a4d1e23246fcf345348e2d",
+  "source_file_count": 40,
+  "netlify_toml_changed": false,
+  "database_install_file": "database/41_step46_stability_ui_recovery.sql",
+  "files": [
+    {
+      "path": "database/08_reports_analytics.sql",
+      "change": "modified",
+      "old_bytes": 45223,
+      "new_bytes": 45403,
+      "byte_delta": 180,
+      "old_sha256": "23e992f0fe9f7d87c2cdc5f301d6ebc99d3dc2e8fe1e9d6e09c8181dcaa49504",
+      "new_sha256": "4417e1e18c4ba1d3cb7743d4a9b62a5b4181a889fb88797a81989c9dd4494252",
+      "description": "Correct report permission handling and remove nested aggregate SQL error."
+    },
+    {
+      "path": "database/24_price_lists_customer_pricing.sql",
+      "change": "modified",
+      "old_bytes": 87225,
+      "new_bytes": 87091,
+      "byte_delta": -134,
+      "old_sha256": "b8962d513909fd77ace946cd6b2d0e0741cbafbc0d119df843fe544f508ff5a1",
+      "new_sha256": "8cea1d29c934b5b806441cc98b842b76f33d12e557bce45a28b7de4854059059",
+      "description": "Correct customer row assignment that could pass customer type text into a UUID field."
+    },
+    {
+      "path": "database/30_batch_expiry_fifo.sql",
+      "change": "modified",
+      "old_bytes": 46423,
+      "new_bytes": 48311,
+      "byte_delta": 1888,
+      "old_sha256": "1abd18bd357c151580dc538fa2978a8cc8e5f86c65c52f5f6d5eb68c76536aa7",
+      "new_sha256": "a8f08713eeedce54fa6b705b8469b8457f321a40fb5e801de775459eb14c1e69",
+      "description": "Allow legacy batch fallback and partial refund batch restoration."
+    },
+    {
+      "path": "database/41_step46_stability_ui_recovery.sql",
+      "change": "added",
+      "old_bytes": null,
+      "new_bytes": 81348,
+      "byte_delta": 81348,
+      "old_sha256": null,
+      "new_sha256": "6390dfad252fa622b80fe3c65881f6618ca919ced1cd61979e1657318a3e013b",
+      "description": "One-run additive migration for Step 46 fixes, custom roles, geofence, reports, pricing, PO receiving/payment and refunds."
+    },
+    {
+      "path": "netlify/functions/_integration-shared.mjs",
+      "change": "modified",
+      "old_bytes": 6965,
+      "new_bytes": 6814,
+      "byte_delta": -151,
+      "old_sha256": "83765ded198762a5d48fbdbbde3193617b9121b260f3970f5f408bc15c493615",
+      "new_sha256": "243c58879665e97cc7584510e927450f016a35c565ea552ed0f9515b9b338855",
+      "description": "Use the shared effective-permission resolver for Integration Center functions."
+    },
+    {
+      "path": "netlify/functions/_permission.mjs",
+      "change": "added",
+      "old_bytes": null,
+      "new_bytes": 1867,
+      "byte_delta": 1867,
+      "old_sha256": null,
+      "new_sha256": "5cd39abcaa96896e00fec645923fab72db61344b3ffd6529bb3837368379e9ff",
+      "description": "New shared owner/override/custom-role/default-role permission resolver."
+    },
+    {
+      "path": "netlify/functions/backup-admin.mjs",
+      "change": "modified",
+      "old_bytes": 28460,
+      "new_bytes": 28215,
+      "byte_delta": -245,
+      "old_sha256": "a0fcc6257eef6f8a46ce3eae3147795a2be328ebbc36cd7ec087869cb7b387c1",
+      "new_sha256": "ecac1662492d2dd612755b352019eba089dc1ccfc0b49ce27ea977fdaac1a6b7",
+      "description": "Include custom roles and assignments in business backup/restore and use effective permissions."
+    },
+    {
+      "path": "netlify/functions/customer-campaign-admin.mjs",
+      "change": "modified",
+      "old_bytes": 1464,
+      "new_bytes": 1228,
+      "byte_delta": -236,
+      "old_sha256": "77e505133f31b8a86d7f2bca82a105dd0403b3add17d317b95bd4e24cb12cd6d",
+      "new_sha256": "d70508d0c2f4ee90309a16a940d88f45a8ddcc732a69ceab58c535d2fe7adf50",
+      "description": "Apply custom-role-aware campaign sending permission."
+    },
+    {
+      "path": "netlify/functions/staff-admin.mjs",
+      "change": "modified",
+      "old_bytes": 19604,
+      "new_bytes": 29898,
+      "byte_delta": 10294,
+      "old_sha256": "d53b275c007113be0d9dfd939d82d0c8a46ddcd45ba7610ba27c2d3ba61bb0e7",
+      "new_sha256": "8ad9271f6f5197c6762d5b61d77afdd491700c1b820f9a9f232976fd43ac0746",
+      "description": "Custom role CRUD/assignment, geofence branch settings, safer role hierarchy and branch-switch permissions."
+    },
+    {
+      "path": "netlify/functions/telegram-admin.mjs",
+      "change": "modified",
+      "old_bytes": 10098,
+      "new_bytes": 10093,
+      "byte_delta": -5,
+      "old_sha256": "a6c008314fc403514b041be0627fc8b3a46a15250b8785ad8f3b9988bb6738e2",
+      "new_sha256": "f5081c8fc458afe3a124f74b28db847639c154aad9e669f68e7f7baac4e72dfe",
+      "description": "Configure and verify the merged /api/telegram-webhook route and expose webhook health."
+    },
+    {
+      "path": "src/components/AppShell.jsx",
+      "change": "modified",
+      "old_bytes": 10785,
+      "new_bytes": 11819,
+      "byte_delta": 1034,
+      "old_sha256": "20a8f16330bc8f56c776e2da3bb3f0a05d9471a43b07fe4ba92c9d19a4826536",
+      "new_sha256": "f4abde5abe25eb8782186049214735666b0f2485d3897f70a0f0a94660195042",
+      "description": "Scrollable responsive sidebar, top collapse control, persistent collapse state and reachable account/logout."
+    },
+    {
+      "path": "src/components/BarcodeScanner.jsx",
+      "change": "modified",
+      "old_bytes": 6784,
+      "new_bytes": 11370,
+      "byte_delta": 4586,
+      "old_sha256": "04532ad7c146558c8ff78c8a5db0d9ce183828fe3c6a408c551bd97f911b9f41",
+      "new_sha256": "72ba4cbe102f748576e77c086292b9814271d8e38dbcd1d52bb627f643eb40f4",
+      "description": "Full-screen target-area scanner with continuous mode, cooldown, sound, vibration, torch and manual code."
+    },
+    {
+      "path": "src/components/BranchFormModal.jsx",
+      "change": "modified",
+      "old_bytes": 2967,
+      "new_bytes": 5544,
+      "byte_delta": 2577,
+      "old_sha256": "9fef0a73b20dd763f50244340f0754d06b713c59375d482bf117a55840cda6ff",
+      "new_sha256": "cb14596222a5ac722a97b0244d87b2e842b4b962e173fd7117e819ab9e170f73",
+      "description": "Branch latitude, longitude, attendance radius and geofence fields."
+    },
+    {
+      "path": "src/components/CustomRoleModal.jsx",
+      "change": "added",
+      "old_bytes": null,
+      "new_bytes": 7206,
+      "byte_delta": 7206,
+      "old_sha256": null,
+      "new_sha256": "fbc16b5949de5172d7fde07958d016a38745f1ed5fdcf35a6e91cf21d3cb27d8",
+      "description": "New custom role editor with grouped granular permissions."
+    },
+    {
+      "path": "src/components/DashboardAlertCard.jsx",
+      "change": "modified",
+      "old_bytes": 1180,
+      "new_bytes": 1348,
+      "byte_delta": 168,
+      "old_sha256": "90370cf966c4dce9d7bcfbea21a0666e476e5d4d885b4dfd405b527b3b916cf2",
+      "new_sha256": "1d44ddfd408e9131a2efab24ae799dffbc403c0fa63a331e95f291fb4d0f8236",
+      "description": "Route low/out-of-stock alerts to matching Reorder Planner filters."
+    },
+    {
+      "path": "src/components/PurchaseOrderActionModal.jsx",
+      "change": "modified",
+      "old_bytes": 5811,
+      "new_bytes": 6067,
+      "byte_delta": 256,
+      "old_sha256": "fc8c611e7a24bd45dd7c51b7ce628152fdc2f9b47a9d637c596f0b5b4616a344",
+      "new_sha256": "cb0d8c4781012e69c517381e6af481fc21185a154559b863b246917f254be778",
+      "description": "Display supplier payment and purchase action errors inside the modal."
+    },
+    {
+      "path": "src/components/PurchaseReceiptModal.jsx",
+      "change": "modified",
+      "old_bytes": 15087,
+      "new_bytes": 15744,
+      "byte_delta": 657,
+      "old_sha256": "65b9801c54201ffa222cf895def2d1bcc5ec8494090fd1a43f770f3c6891e9f4",
+      "new_sha256": "0bfafe460272f16a8b927013b091d3ccb76a8d199a89f626d86a3ebf0f1e6ef0",
+      "description": "Per-line Receive remaining and Receive all remaining with batch-aware validation."
+    },
+    {
+      "path": "src/components/QuoteSaveModal.jsx",
+      "change": "modified",
+      "old_bytes": 4858,
+      "new_bytes": 4993,
+      "byte_delta": 135,
+      "old_sha256": "d0f80c12e3d4113bd20bfecd9017ce50ea7b5708b61095bb9273fc8f3ec4cb4e",
+      "new_sha256": "deed85a6219422def01e1bef7902d725727c11fac4c26a3d6ccdfa7a050c8558",
+      "description": "Await quote save and show backend errors without silently closing."
+    },
+    {
+      "path": "src/components/ReceiptModal.jsx",
+      "change": "modified",
+      "old_bytes": 9856,
+      "new_bytes": 12586,
+      "byte_delta": 2730,
+      "old_sha256": "8133695184a6ca978edda1a9a46ac7bc5bfba652b76aa7518af644343b8ff12f",
+      "new_sha256": "63f5014235205ca456a87a751bbc0ad6de80094006e76627fe2f05647b19e09b",
+      "description": "English/Khmer sale receipt toggle and localized print labels."
+    },
+    {
+      "path": "src/components/RefundModal.jsx",
+      "change": "modified",
+      "old_bytes": 12911,
+      "new_bytes": 13043,
+      "byte_delta": 132,
+      "old_sha256": "655761f7147d9affaec733072f3fc21ec6ce6b7f7fb0bda95f724cec58a55cd6",
+      "new_sha256": "b7e4d3dbdc8d237854224ef62a9913b7b858af42d25d2b3ca2673809467b3a53",
+      "description": "Preserve partial line selection and surface exact refund errors."
+    },
+    {
+      "path": "src/components/ReturnReceiptModal.jsx",
+      "change": "modified",
+      "old_bytes": 4534,
+      "new_bytes": 6484,
+      "byte_delta": 1950,
+      "old_sha256": "6dfba46c832969f8505f6d267145aa870ab2138703901349f545453f12583c58",
+      "new_sha256": "d814424eea9868f8e05141736efaeff5ca2a3392fac64314796cca02a2aa5b21",
+      "description": "English/Khmer refund receipt toggle and localized printing."
+    },
+    {
+      "path": "src/components/SaleCart.jsx",
+      "change": "modified",
+      "old_bytes": 13608,
+      "new_bytes": 16359,
+      "byte_delta": 2751,
+      "old_sha256": "0eb58b6938f0a079b723fca49d7633bd8303b390662e95491b5f216abb546608",
+      "new_sha256": "615e847f50aac2d22c638cbfde6aecb78e5e0e80dea5790618e8969947c25306",
+      "description": "Searchable customer picker and compact one/two-row bill lines with right-side quantity controls."
+    },
+    {
+      "path": "src/components/StaffFormModal.jsx",
+      "change": "modified",
+      "old_bytes": 7129,
+      "new_bytes": 9150,
+      "byte_delta": 2021,
+      "old_sha256": "c8fe2cc774093bf6619472e9ee61b31ae5c7841dbdb885de80701646822bae97",
+      "new_sha256": "25c794e7962941cb92cf3888b47155272caaff00d401902d266d1e1db9f1837f",
+      "description": "Assign standard or custom roles to staff."
+    },
+    {
+      "path": "src/context/AuthContext.jsx",
+      "change": "modified",
+      "old_bytes": 7392,
+      "new_bytes": 7452,
+      "byte_delta": 60,
+      "old_sha256": "55293caadd9a363e1ef718d2fec8801b5ab2ea4a7f0109410782a2f8888a4d74",
+      "new_sha256": "ec6923de98e3cdf4ccaa833fef4e8f362635dce07530c4ea09b5a707b69dbe8a",
+      "description": "Load the signed-in user custom role relation."
+    },
+    {
+      "path": "src/lib/catalog.js",
+      "change": "modified",
+      "old_bytes": 8251,
+      "new_bytes": 9772,
+      "byte_delta": 1521,
+      "old_sha256": "84e666eed530c6ef77a703317c291cd9928d71be0f7dc9e32f1d7ea62e94872d",
+      "new_sha256": "0dd65cfc3634632a3dea95dc5404379037f9878a085cda860cbb0e1339308013",
+      "description": "Compute branch stock status using reorder rule, product threshold and shop threshold precedence."
+    },
+    {
+      "path": "src/lib/crm.js",
+      "change": "modified",
+      "old_bytes": 5445,
+      "new_bytes": 5447,
+      "byte_delta": 2,
+      "old_sha256": "ff8ca5bb76daf1446e6a06810ab44212c0e04223f543affead8f3fad6db7a8d8",
+      "new_sha256": "d6a332231d2efa3fb0d914aa2737374e1c21093ed371bb24654911c7136e6cdb",
+      "description": "Use actual coupon starts_at and ends_at columns."
+    },
+    {
+      "path": "src/lib/inventory.js",
+      "change": "modified",
+      "old_bytes": 5433,
+      "new_bytes": 6581,
+      "byte_delta": 1148,
+      "old_sha256": "a5299b65b9e3fc3726e457e74bb0f14cf9015609e4e9fccc6426c648d1c52266",
+      "new_sha256": "180e921a8252523b71aea0076a3ead7a442aa23abf3d374ca3acb40bc463d65d",
+      "description": "Compute consistent effective low-stock thresholds and stock statuses."
+    },
+    {
+      "path": "src/lib/staff.js",
+      "change": "modified",
+      "old_bytes": 3196,
+      "new_bytes": 4443,
+      "byte_delta": 1247,
+      "old_sha256": "8c9d836b12b5c8b9398da38ebd33cae8f909f31a5f3a0f4734ea6d500d7a35c5",
+      "new_sha256": "2e74e42acd934265a71624977176a50e6b995e1cd67a1b5b70e20b95efe99006",
+      "description": "Custom role workspace actions and geofence branch payloads."
+    },
+    {
+      "path": "src/lib/staffOperations.js",
+      "change": "modified",
+      "old_bytes": 6834,
+      "new_bytes": 7204,
+      "byte_delta": 370,
+      "old_sha256": "db24c1f6836c62fc7ff6b4d902d8b86f3691b3acaa04eadb7a7e4ba63421b678",
+      "new_sha256": "f36b58b6642646037d0335e98a2ea81ef1b0f2467ede2a64d71905ffc2a38429",
+      "description": "Send device coordinates to Step 46 attendance RPCs."
+    },
+    {
+      "path": "src/pages/InventoryPage.jsx",
+      "change": "modified",
+      "old_bytes": 14160,
+      "new_bytes": 17020,
+      "byte_delta": 2860,
+      "old_sha256": "23cfeaeaf5d662b815c188b1047eded7e9e9a9e79ba62a04fd95ac0e482f26d0",
+      "new_sha256": "3b8b5770fa96161514922c790998bbbec00f8bd984beb44cd26ff872475fdac2",
+      "description": "Low/out/healthy filters plus CSV export and print."
+    },
+    {
+      "path": "src/pages/LoginPage.jsx",
+      "change": "modified",
+      "old_bytes": 2274,
+      "new_bytes": 3452,
+      "byte_delta": 1178,
+      "old_sha256": "b0b92f47d3e25d39e03d5ee5697f109d544e5697392b74e60589f9b435977041",
+      "new_sha256": "dca903c1713dc8ef3e528746773fa8ea9b6a832663c2a65775ac3556ef77034f",
+      "description": "Redesigned responsive login interface."
+    },
+    {
+      "path": "src/pages/ProductsPage.jsx",
+      "change": "modified",
+      "old_bytes": 11795,
+      "new_bytes": 16279,
+      "byte_delta": 4484,
+      "old_sha256": "bf768cbaa4dc7c11a5ab613f54071bd4ef7bcf23b23b56d8eb987278ab217350",
+      "new_sha256": "6ecb4b82f9fdd684de4f9a7e37d4829f7538c7458110185bf2d315ae57e861d9",
+      "description": "Fix category modal flow; add low-stock filters, EN/KH sorting, CSV export and print."
+    },
+    {
+      "path": "src/pages/PurchaseOrdersPage.jsx",
+      "change": "modified",
+      "old_bytes": 30058,
+      "new_bytes": 30096,
+      "byte_delta": 38,
+      "old_sha256": "a13c4e5043eb534c884e74cc7c06d17ad5abe1ff0e43ab4b0528a3d729ac0162",
+      "new_sha256": "05b2786a5ad677918bd56cf64006c70feb8ecdbe01240cccbf3e339ddd4a8621",
+      "description": "Propagate receive/payment errors to their action modals."
+    },
+    {
+      "path": "src/pages/ReorderPage.jsx",
+      "change": "modified",
+      "old_bytes": 20330,
+      "new_bytes": 23955,
+      "byte_delta": 3625,
+      "old_sha256": "63d586084a99650fb15ed9493b8382d9895854e62f05a132a4c0e5fe068288b3",
+      "new_sha256": "53ca549449472459c282a14aec3f819a363dd512ca696c4b193c36144042c344",
+      "description": "Query-driven attention filters, physical low-stock checks, CSV export and print."
+    },
+    {
+      "path": "src/pages/ReturnsPage.jsx",
+      "change": "modified",
+      "old_bytes": 21679,
+      "new_bytes": 21698,
+      "byte_delta": 19,
+      "old_sha256": "6a2ada54a886e930df2c6d49de8e983e220097b938092e1f6abd1e1ec6172239",
+      "new_sha256": "28536fad09d3ff7d7ef259d295776847d3a377f88769010177803ddb40e3c7a1",
+      "description": "Propagate partial refund errors to the refund modal."
+    },
+    {
+      "path": "src/pages/SalesPage.jsx",
+      "change": "modified",
+      "old_bytes": 52693,
+      "new_bytes": 54193,
+      "byte_delta": 1500,
+      "old_sha256": "8a13e66fd19c70be564076c2c6c59bc09b7c92d515c230258bd8e9642bc02e4e",
+      "new_sha256": "88af805f0541190beeaf87f9133e7192cda9865197798014ab8212e126a8dfe0",
+      "description": "Continuous scanner, product EN/KH sorting and reliable quote/error propagation."
+    },
+    {
+      "path": "src/pages/StaffOperationsPage.jsx",
+      "change": "modified",
+      "old_bytes": 13773,
+      "new_bytes": 15092,
+      "byte_delta": 1319,
+      "old_sha256": "5e79aa3ceea7a92e53fb7f1897f65d1bc71152d340229abbbe7cf92516d40e7d",
+      "new_sha256": "d57c06536afee65c9f6dcb8a05e6e2af77e76e46373fb2e07f5ca79cc7bdea90",
+      "description": "Request precise location and display geofence check-in errors/results."
+    },
+    {
+      "path": "src/pages/TelegramPage.jsx",
+      "change": "modified",
+      "old_bytes": 22035,
+      "new_bytes": 22338,
+      "byte_delta": 303,
+      "old_sha256": "2afdf8cdd57a1c304160a484fcf328c438d810f43d470f604eb691c9f8cd3948",
+      "new_sha256": "970614af09faf0a7ddf1f1c0d170e1917ad7c6b3344301b6a7f8e70754beee3d",
+      "description": "Show expected webhook URL and mismatch/health details."
+    },
+    {
+      "path": "src/pages/UsersPage.jsx",
+      "change": "modified",
+      "old_bytes": 18591,
+      "new_bytes": 22998,
+      "byte_delta": 4407,
+      "old_sha256": "c4f986e466196dce6a2e65498637e6e36ba6b016d27cedda3ac7aed33d0579f3",
+      "new_sha256": "60d342866bcc41aa8e7c61fe698b640625a5715a5e957e99bca86ff225e04374",
+      "description": "Custom role management, assignment counts and branch attendance configuration status."
+    },
+    {
+      "path": "src/styles/global.css",
+      "change": "modified",
+      "old_bytes": 261941,
+      "new_bytes": 280821,
+      "byte_delta": 18880,
+      "old_sha256": "fcab332658b4c4c3614be83d2ebfd7d24244507ca0fa38b22bfa6f6860274631",
+      "new_sha256": "f490379ebbdc2a5a4257d73855e3cd93b3d95ca535cebc9713eb84d5b1fbf94b",
+      "description": "Responsive sidebar/scanner/login/cart/toolbars/custom-role/geofence/receipt styling and Khmer web font."
+    }
+  ],
+  "documentation": [
+    {
+      "path": "STEP46_INSTALLATION.txt",
+      "bytes": 5787,
+      "sha256": "dcb83a650bdb7fba6dcb119430a775595a417dee2098e630b502e2e300d8f682"
+    },
+    {
+      "path": "STEP46_AUDIT_REPORT.txt",
+      "bytes": 4525,
+      "sha256": "5deb4e9262f977733bc85364e716eacba8da6e7d742c1ee22b67da083a22e9b9"
+    }
+  ],
+  "validation": {
+    "node_mjs_syntax_files": 24,
+    "typescript_transpile_files": 210,
+    "relative_imports_checked": 471,
+    "changed_js_identifier_files": 35,
+    "git_diff_check": "pass",
+    "merge_marker_scan": "pass",
+    "css_structure": "pass",
+    "sql_functions_checked": 12,
+    "vite_build": "not_run_registry_missing_dependencies",
+    "live_supabase": "not_tested",
+    "live_telegram": "not_tested"
+  }
+}

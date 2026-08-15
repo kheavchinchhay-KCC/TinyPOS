@@ -1,0 +1,64 @@
+Tiny POS Patch 46.25
+Backup Center: one-file ZIP + loading state + manual/automatic Google Drive backups
+
+BASELINE
+- Apply after Patch 46.24.
+- This patch was built against the cumulative Tiny POS state through 46.24.
+
+CHANGED / NEW PATHS ONLY
+1. database/63_step46_25_backup_center_scheduling_drive.sql   NEW
+2. netlify/functions/backup-admin.mjs                        CHANGED
+3. netlify/functions/backup-google-drive-callback.mjs        NEW
+4. netlify/functions/backup-scheduler.mjs                    NEW
+5. netlify.toml                                              CHANGED
+6. src/lib/adminTools.js                                     CHANGED
+7. src/lib/backupArchive.js                                  NEW
+8. src/pages/AdminToolsPage.jsx                              CHANGED
+9. src/styles/global.css                                     CHANGED (active stylesheet)
+
+NO OTHER APPLICATION FILES ARE INCLUDED.
+
+WHAT IT ADDS
+- Manual backup downloads ONE .zip file.
+- ZIP contains:
+  * business-backup.json (used by Tiny POS Restore)
+  * manifest.json
+  * cloudinary-assets.csv
+  * README.txt
+- Old JSON backups remain accepted by Validate / Restore.
+- Visible Backup in progress/loading panel for create, upload, validate, settings and restore operations.
+- Google Drive Connect / Disconnect using OAuth permission.
+- Google Drive folder link field.
+  * Paste a Drive folder URL or folder ID.
+  * Leave blank to create a "Tiny POS Backups" folder automatically.
+- Manual "Backup now to Drive" button.
+- Automatic backup schedule:
+  * Every day
+  * Every 3 days
+  * Every week
+  * Custom every 2-90 days (for example every 10 days)
+  * Preferred backup time
+- Backup history identifies Manual / Automatic and Google Drive destination.
+- Scheduled backup runs server-side, so the POS does not need to stay open.
+
+IMPORTANT BACKUP SCOPE
+The ZIP protects Tiny POS business data used by the existing Restore system.
+For security and practical file-size reasons it intentionally does NOT contain:
+- Supabase Auth passwords
+- Netlify environment/API secrets
+- Third-party secret keys/tokens
+- The binary bytes of Cloudinary images
+The ZIP includes cloudinary-assets.csv so referenced Cloudinary files can be audited/recovered separately.
+
+INSTALLATION ORDER
+1. Run database/63_step46_25_backup_center_scheduling_drive.sql ONCE in Supabase.
+2. Add/replace the source and Netlify files listed above.
+3. Configure the Google Drive OAuth application and Netlify environment variables described in GOOGLE_DRIVE_BACKUP_SETUP.txt.
+4. Deploy normally.
+5. Open Audit & Backup > Backup center.
+6. Click Connect Google Drive and approve permission.
+7. Optionally paste a Google Drive folder link.
+8. Choose the automatic backup frequency/time and click Save backup settings.
+9. Test "Backup now to Drive" once before relying on automatic backups.
+
+DO NOT rerun SQL migrations 01-62.
