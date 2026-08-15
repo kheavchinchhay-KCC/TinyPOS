@@ -16,5 +16,5 @@ at a glance; neither affects install order or correctness:
   plain alphabetical sort) already orders them correctly — 46.24 before
   46.25 — so no manual reordering is needed to install safely.
 
-Latest migration as of this note: `69_storefront_phone_lookup_rate_limit.sql`.
+Latest migration as of this note: `70_fix_customer_checkout_rowtype_mismatch.sql`.
 Run `VERIFY.sql` after installing to confirm the latest patches applied.
